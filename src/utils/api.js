@@ -4,7 +4,7 @@ class Api {
     this._headers = config.headers;
   }
 
-  _response = (res) => { // пишем типичную обработку ответа от сервера
+  _checkResponse = (res) => { // пишем типичную обработку ответа от сервера
     if (res.ok) {
       return res.json();
     }
@@ -16,7 +16,7 @@ class Api {
       method: 'GET',
       headers: this._headers
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   getInitialCards() { // запрашиваем с сервера карточки и обрабатываем ответ
@@ -24,7 +24,7 @@ class Api {
       method: 'GET',
       headers: this._headers
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   editUserInfo(data) {
@@ -36,7 +36,7 @@ class Api {
         about: data.about
       })
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   addCard(data) {
@@ -48,7 +48,7 @@ class Api {
         link: data.link
       })
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   deleteCard(_id) {
@@ -56,7 +56,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   likeCard(_id) {
@@ -64,7 +64,7 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   dislikeCard(_id) {
@@ -72,7 +72,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(this._response);
+      .then(this._checkResponse);
   }
 
   editAvatar(data) {
@@ -83,7 +83,7 @@ class Api {
         avatar: data.link,
       })
     })
-      .then(this._response)
+      .then(this._checkResponse)
       .then(console.log())
   }
 

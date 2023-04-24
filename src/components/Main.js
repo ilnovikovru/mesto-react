@@ -13,29 +13,18 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       setUserName(userInfo.name);
       setUserDescription(userInfo.about);
       setUserAvatar(userInfo.avatar);
+    })
+    .catch((err) => {
+      console.log(err);
     });
     apiConfig.getInitialCards().then((initialCards) => {
       setCards(initialCards);
+    }).catch((err) => {
+      console.log(err);
     });
   }, []);
 
-  const handleEditAvatarClick = () => {
-    const avatarPopup = document.querySelector('.popup_edit-avatar');
-    avatarPopup.classList.add('popup_opened');
-  };
-
-  const handleEditProfileClick = () => {
-    const profilePopup = document.querySelector('.popup_edit');
-    profilePopup.classList.add('popup_opened');
-  };
-
-  const handleAddPlaceClick = () => {
-    const addPlacePopup = document.querySelector('.popup_add');
-    addPlacePopup.classList.add('popup_opened');
-  };
-
   return (
-    <>
       <main className="main">
         <section className="profile">
           <div className="profile__avatar-container" onClick={onEditAvatar}>
@@ -60,7 +49,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
           </ul>
         </section>
       </main>
-    </>
   );
 }
 
