@@ -19,6 +19,29 @@ class Api {
       .then(this._checkResponse);
   }
 
+  setUserInfo(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about
+      })
+    })
+      .then(this._checkResponse);
+  }
+
+  setUserAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      })
+    })
+      .then(this._checkResponse);
+  }
+
   getInitialCards() { // запрашиваем с сервера карточки и обрабатываем ответ
     return fetch(`${this._url}/cards`, {
       method: 'GET',
